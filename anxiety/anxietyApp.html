@@ -1,0 +1,231 @@
+<html>
+<head>
+  <script src="jquery.js"></script>
+  <script src="fastclick.js"></script>
+  <script src="p5.min.js"></script>
+  <script src="p5.sound.js"></script>
+</head>
+<body>
+<script>
+function preload(){
+	soundAr=[];
+	soundAr[0]=loadSound("drop1.wav");
+	soundAr[1]=loadSound("drop2.wav");
+	soundAr[2]=loadSound("drop3.wav");
+	soundAr[3]=loadSound("drop4.wav");
+	soundAr[4]=loadSound("drop5.wav");
+	soundAr[5]=loadSound("drop6.wav");
+}
+
+function setup() {
+   soundCount=0;
+   screenWidth=$(window).width()-40;
+   screenHeight=$(window).height()-40;
+   createCanvas(screenWidth,screenHeight);
+   frameRate(30);
+   x=screenWidth/2;
+   y=screenHeight/2;
+   xt=x;
+   yt=y;
+   xGrad=x;
+   yGrad=y;
+   time=0;
+   moveMouseSpeed=20;
+   moveMouseSpeedGrad=35;
+   centreSize=0;
+   centreSizeLimit=[95,105];
+   
+   gradRes=(Math.random()*0.02)+0.01
+   
+   centreColor=[0,0,0];
+   
+   ringGrad=[];
+   ringColor=[];
+   ringPos=[];
+   ringSpeed=[];
+   ringRadPos=[];
+   ringRadLimit=[];
+   ringRadSpeed=[];
+   
+   ringSize=[];
+   ringSizeLimit=[]
+   ringNum=(Math.random()*9)+2;
+   r=Math.random()*255;
+   g=Math.random()*255;
+   b=Math.random()*255;
+   ringC=[r,g,b];
+   ringC2=[r-10,g-10,b-10];
+   gradColorRat=255;
+   gradColor=[gradColorRat-r/2,gradColorRat-g/2,gradColorRat-b/2];
+   centreGrad=[[r+50,g+50,b+50],[r+40,g+40,b+40]];
+   
+   plusOrNeg=Math.random() < 0.5 ? -1 : 1;
+   
+   
+   for(i=0;i<ringNum;i++){
+      
+      ringRadLimitR=(Math.random()*30*i)+(15*i);
+      
+      
+      multiplier=Math.pow(i,plusOrNeg);
+      
+      ringSizeLimitR=(Math.random()*10*multiplier)+(5*multiplier);
+      ringGrad.push([[ringC[0],ringC[1],ringC[2]],[ringC2[0],ringC2[1],ringC2[2]]])
+      ringColor.push([0,0,0]);
+      ringPos.push(0);
+      ringSpeed.push(0.01*(Math.pow(-1,i)));
+      ringRadPos.push(0);
+      ringRadLimit.push([ringRadLimitR-10,ringRadLimitR+10]);
+      ringRadSpeed.push(1);
+      
+      ringSize.push(0);
+      ringSizeLimit.push([ringSizeLimitR-2,ringSizeLimitR+2]);
+   }
+   
+   starsMax=5;
+   starsMin=3;
+   stars2Max=3;
+   stars2Min=1;
+   stars=populateStarArray(75,starsMax,starsMin);
+   stars2=populateStarArray(50,stars2Max,stars2Min);
+   for(i=0;i<soundAr.length;i++){
+	soundAr[i].setVolume(0.5);
+   }
+}
+
+function draw() {
+   x+=((xt-x)/moveMouseSpeed);
+   y+=((yt-y)/moveMouseSpeed);
+   
+   
+   xGrad+=((xt-xGrad)/moveMouseSpeedGrad);
+   yGrad+=((yt-yGrad)/moveMouseSpeedGrad); 
+   
+   background(0);
+   gradSize=Math.abs((Math.sin(time-Math.PI/2)*100))+500;
+   
+   radialGradient(xGrad,yGrad,xt,yt,gradSize,gradRes,[0,0,0],gradColor);
+   noStroke();
+   fill(255);
+   
+   for(i=0;i<stars.length;i++){
+      ellipse(stars[i][0]-(x*(1-(stars[i][2]/starsMax))),stars[i][1]-(y*(1-(stars[i][2]/starsMax))),stars[i][2],stars[i][2]);
+   }
+   
+   for(i=0;i<ringPos.length;i++){
+      ringPos[i]+=ringSpeed[i];
+      ringRadPos[i]=Math.abs((Math.sin(time)*ringRadLimit[i][1]))+ringRadLimit[i][0];
+      
+      ringSize[i]=Math.abs((Math.sin(time-Math.PI/1.9)*ringSizeLimit[i][1]))+ringSizeLimit[i][0];
+      
+      ringColor[i]=gradientFloat(ringGrad[i][0],ringGrad[i][1],1-ringSize[i]/ringSizeLimit[i][1]);
+      
+   }
+   
+  
+   
+   
+   
+   centreSize=Math.abs((Math.sin(time-Math.PI/1.9)*centreSizeLimit[1]))+centreSizeLimit[0];
+   
+   centreColor=gradientFloat(centreGrad[0],centreGrad[1],1-centreSize/centreSizeLimit[1]);
+   fill(centreColor[0],centreColor[1],centreColor[2]);
+   ellipse(x,y,centreSize,centreSize);
+   
+   drawRing(x,y,5,ringRadPos[0],ringSize[0],ringPos[0]);
+   drawRing(x,y,7,ringRadPos[1],ringSize[1],ringPos[1]);
+   drawRing(x,y,9,ringRadPos[2],ringSize[2],ringPos[2]);
+   drawRing(x,y,11,ringRadPos[3],ringSize[3],ringPos[3]);
+   
+   noStroke();
+   fill(255);
+   
+   for(i=0;i<stars2.length;i++){
+      ellipse(stars2[i][0]-(x*(1-(stars2[i][2]/stars2Max))),stars2[i][1]-(y*(1-(stars2[i][2]/stars2Max))),stars2[i][2],stars2[i][2]);
+   }
+   fill(color("rgba(255,255,255,0.5)"));
+   rect(0,screenHeight*0.9,screenWidth,screenHeight*0.1)
+   
+   
+   time+=Math.PI/300;
+}
+
+function mouseDragged() {
+   xt=mouseX;
+   yt=mouseY;
+}
+
+function mousePressed() {
+   if(mouseY>screenWidth*0.85){
+      setup();
+   }
+   else
+   {
+      xt=mouseX;
+      yt=mouseY;
+   }
+   soundCount++;
+   if(soundCount>soundAr.length-1){soundCount=0;}
+   soundAr[soundCount].play();
+   
+   osc= new p5.Oscillator();
+   osc.setType("sine");
+   osc.freq(240);
+   osc.amp(0);
+   osc.start();
+   
+}
+
+function drawRing(x1,y1,num,radius,radSmall,pos){
+   step=(Math.PI*2)/num;
+   for(j=0;j<ringColor.length;j++){
+      for(i=0;i<num;i++){
+         x2=(x1+radius*Math.cos(step*i+pos));
+         y2=(y1+radius*Math.sin(step*i+pos));
+         fill(ringColor[j][0],ringColor[j][1],ringColor[j][2]);
+         ellipse(x2,y2,radSmall,radSmall);
+      }
+   }
+}
+
+
+function gradientFloat(colorAr1,colorAr2,fraction){
+   dif=[0,0,0];
+   newColorAr=[0,0,0];
+   for(j=0;j<3;j++){
+      dif[j]=colorAr2[j]-colorAr1[j];
+      newColorAr[j]=colorAr1[j]+(dif[j]*fraction);
+      fill(255);
+      //newColorAr[j]=40*j;
+      //ellipse(j*50,j*50,20,20);
+   }
+   //fill(newColorAr[0],newColorAr[1],newColorAr[2]);
+   //ellipse(200,200,50,50);
+   return newColorAr;
+}
+
+function radialGradient(x,y,xt,yt,r,resolution,color1,color2){
+   noStroke();
+   for(i=0;i<r+1;i+=(1/resolution)){
+      colorAr=gradientFloat(color1,color2,i/r);
+      fill(colorAr[0],colorAr[1],colorAr[2]);
+      //fill(5*i,50,46);
+      x=x+(i*(xt-x)*0.00011);
+      y=y+(i*(yt-y)*0.00011);
+      ellipse(x,y,r-i,r-i);
+   }   
+}
+
+function populateStarArray(starNum,sizeMax,sizeMin){
+   starAr=[];
+   for(i=0;i<starNum;i++){
+      starAr[i]=[];
+      starAr[i][0]=Math.random()*screenWidth;
+      starAr[i][1]=Math.random()*screenHeight;
+      starAr[i][2]=(Math.random()*(sizeMax-sizeMin))+sizeMin;
+   }
+   return starAr;
+}
+</script>
+</body>
+</html>

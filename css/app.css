@@ -1,0 +1,35 @@
+html
+{
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+body
+{
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+.site-container{width:100%;overflow:hidden;}
+.page-container{width:100%;display:block;position:relative;}
+.main-content{float:right;}
+.sidebar{float:left;background-color:#FFAAFF}
+.row{
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: initial;
+}
+.fullWidth {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: initial;
+}
+
+body{
+	font-family:"Playfair Display", serif;
+}
+.lob{
+	font-family:"Josefin Sans", sans-serif;
+}

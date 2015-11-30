@@ -1,0 +1,142 @@
+<html>
+<head>
+  <title>Art Prompt</title>
+  <script src="lib/vendor/jquery.js"></script>
+  <script src="lib/vendor/fastclick.js"></script>
+  <script src="lib/vendor/chance.min.js"></script>
+  <script>
+	$(document).ready(function(){
+		function makePalette(colourNo)
+		{
+			colours=[];
+			range=100;
+			for(i=0;i<colourNo;i++)
+			{
+				if(colours.length<1)
+				{
+					r=r2=Math.floor(Math.random()*255);
+					g=g2=Math.floor(Math.random()*255);
+					b=b2=Math.floor(Math.random()*255);
+				}
+				else
+				{
+					r=r*-1+(255/i);
+					g=g*-1+(255/i);
+					b=b*-1+(255/i);
+					//r=r+(Math.floor(Math.random()*range)-(range/2));
+					//g=g+(Math.floor(Math.random()*range)-(range/2));
+					//b=b+(Math.floor(Math.random()*range)-(range/2));
+				}
+				/*if(r/255>1){r=r%255;}
+				else if(r/255<0){r=(r%255)*-1}
+				if(g/255>1){g=g%255;}
+				else if(g/255<0){g=(g%255)*-1}
+				if(b/255>1){b=b%255;}
+				else if(b/255<0){b=(b%255)*-1}*/
+				newColour=[r,g,b];
+				colours.push(newColour);
+			}
+			return colours;
+		}
+		coloursAr=makePalette(3);
+		$.each(coloursAr,function(i,el)
+		{
+			$("#colour"+i).css("backgroundColor","rgb("+coloursAr[i][0]+","+coloursAr[i][1]+","+coloursAr[i][2]+")");
+			rgb="R: "+coloursAr[i][0]+" G: "+coloursAr[i][1]+" B: "+coloursAr[i][2];
+			hex=[]
+			hex[0]=parseInt(coloursAr[i][0],10).toString(16);
+			hex[1]=parseInt(coloursAr[i][1],10).toString(16);
+			hex[2]=parseInt(coloursAr[i][2],10).toString(16);
+			
+			for(j=0;j<hex.length;j++)
+			{
+				if(hex[j].length==1)
+				{
+					hex[j]="0"+hex[j];
+				}
+			}
+			
+			
+			hexStr="#"+hex[0]+""+hex[1]+""+hex[2];
+			$("#colourR"+i).val(coloursAr[i][0]);
+			$("#colourG"+i).val(coloursAr[i][1]);
+			$("#colourB"+i).val(coloursAr[i][2]);
+			$("#colourHex"+i).val(hexStr);
+		});
+		
+
+				
+		
+		$.ajaxSetup({
+			async: false
+		});
+		words=["noun","adjective","verb"];
+		for(i=0;i<words.length;i++){
+		url="http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=false&includePartOfSpeech="+words[i]+"&minCorpusCount=10000&maxCorpusCount=1000000&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5",
+			$.getJSON(url, function(array) {
+				r=Math.floor(Math.random()*(array.length-1));
+				console.log(array[r].word);
+				temp=words[i];
+				words[i]=array[r].word;
+				$("#word"+i).text(temp+": "+words[i]);
+			});
+		}
+	});
+  </script>
+  <style>
+	.colour
+	{
+		width:10vh;
+		height:10vh;
+		background-color:red;
+		border-style:double;
+		border-width:1vh;
+	}
+  </style>
+  
+</head>
+<body>
+	<div id="wordCont">
+		<p id="word0"></p>
+		<p id="word1"></p>
+		<p id="word2"></p>
+	</div>
+	<div id="palette">
+	<div id="colourCont0" class="colourCont">
+		<div id="colour0" class="colour"></div>
+		R:<input id="colourR0" class="colourText"></input>
+		</br>
+		G:<input id="colourG0" class="colourText"></input>
+		</br>
+		B:<input id="colourB0" class="colourText"></input>
+		</br>
+		Hex:<input id="colourHex0" class="colourText"></input>
+	</div>
+	</br>
+	<div id="colourCont1" class="colourCont">
+		<div id="colour1" class="colour"></div>
+		R:<input id="colourR1" class="colourText"></input>
+		</br>
+		G:<input id="colourG1" class="colourText"></input>
+		</br>
+		B:<input id="colourB1" class="colourText"></input>
+		</br>
+		Hex:<input id="colourHex1" class="colourText"></input>
+	</div>
+	</br>
+	<div id="colourCont2" class="colourCont">
+		<div id="colour2" class="colour"></div>
+		R:<input id="colourR2" class="colourText"></input>
+		</br>
+		G:<input id="colourG2" class="colourText"></input>
+		</br>
+		B:<input id="colourB2" class="colourText"></input>
+		</br>
+		Hex:<input id="colourHex2" class="colourText"></input>
+	</div>
+	</div>
+	</br>
+	<button id="reload">Get a new prompt!</button>
+	<script>$("#reload").on("click",function(){location.reload();})</script>
+</body>
+</html>

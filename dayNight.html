@@ -1,0 +1,395 @@
+<html>
+<head>
+	<meta name="author" content="Ben Howarth">
+	<meta name="dateCreated" content="28.04.2015">
+	<title>TopHatSquid | The Home of Ben Howarth</title>
+	<style>
+		body
+		{
+			overflow:hidden;
+			background-color:black;
+		}
+		#bg
+		{
+			position:absolute;
+			z-index:1;
+		}
+		#stars
+		{
+			position:absolute;
+			z-index:2;
+		}
+		.room
+		{
+			position:absolute;
+			width:200px;
+			height:200px;
+			background-color:grey;
+			z-index:4;
+			background-image:url("dayNight/img/room.svg");
+			background-size:100%;
+			-webkit-transition:-webkit-filter 0.3s ease-in-out;
+		}
+		.room:hover{-webkit-filter:brightness(140%);}
+		.lights
+		{
+			position:absolute;
+			width:200px;
+			height:200px;
+			z-index:5;
+			background-image:url("dayNight/img/lights.svg");
+			background-size:100%;
+		}
+		#l1{background-image:url("dayNight/img/l1.svg");}
+		#l2{background-image:url("dayNight/img/lights.svg");}
+		#l3{background-image:url("dayNight/img/l3.svg");}
+		#l4{background-image:url("dayNight/img/l4.svg");}
+		#l5{background-image:url("dayNight/img/l5.svg");}
+		#l6{background-image:url("dayNight/img/l6.svg");}
+		#building
+		{
+			position:absolute;
+			background-color:black;
+		}
+		#b1
+		{
+			margin-left:0px;
+			margin-top:0px;
+			background-image:url("dayNight/img/b1.svg");
+			background-size:100%;
+		}
+		#b2
+		{
+			margin-left:200px;
+			margin-top:0px;
+			background-image:url("dayNight/img/b2.svg");
+			background-size:100%;
+		}
+		#b3
+		{
+			margin-left:0px;
+			margin-top:-200px;
+			background-image:url("dayNight/img/b3.svg");
+			background-size:100%;
+		}
+		#b4
+		{
+			margin-left:200px;
+			margin-top:-200px;
+			background-image:url("dayNight/img/b4.svg");
+			background-size:100%;
+		}
+		#b5
+		{
+			margin-left:0px;
+			margin-top:-400px;
+			background-image:url("dayNight/img/b5.svg");
+			background-size:100%;
+		}
+		#b6
+		{
+			margin-left:200px;
+			margin-top:-400px;
+			background-image:url("dayNight/img/b6.svg");
+			background-size:100%;
+		}
+		#sign
+		{
+			position:absolute;
+			background-image:url("dayNight/img/sign.svg");
+			background-size:100%;
+			z-index:4;
+		}
+		#ground
+		{
+			position:absolute;
+			width:1000px;
+			height:100px;
+			background-color:green;
+			left:-10px;
+			z-index:5;
+		}
+		#spaceRot{position:absolute;width:500px;height:500px;border-radius:500px;opacity:1;z-index:3;}
+		#moon{position:absolute;height:100px;width:100px;background-image:url("dayNight/img/moon.svg");background-size:100%;border-radius:100px;margin-top:200px;margin-left:400px;}
+		#sun{positive:absolute;height:100px;width:100px;background-image:url("dayNight/img/sun.svg");background-size:100%;border-radius:100px;margin-top:200px;margin-left:0px;}
+	</style>
+	<script src="lib/vendor/jquery.js"></script>
+	<script src="lib/jquery-rotate.min.js"></script>
+	<script src="lib/transition.js"></script>
+</head>
+<body>
+	<div id="all">
+		<div id="bg">
+			<canvas id="stars">
+				
+			</canvas>
+		</div>
+		<div id="spaceRot">
+			<div id="moon"></div>
+			<div id="sun"></div>
+		</div>
+		<div id="building">
+			<div id="b1" class="room"></div>
+			<div id="b2" class="room"></div>
+			<div id="b3" class="room"></div>
+			<div id="b4" class="room"></div>
+			<div id="b5" class="room"></div>
+			<div id="b6" class="room"></div>
+		</div>
+		<div id="sign"></div>
+		<div id="ground"></div>
+	</div>
+	<script>
+		$(document).ready(function(){loaded();});
+		document.ontouchmove=function(e){e.preventDefault();}
+		timeSpeed=5000;
+		//set up stars
+		starsDrawn=false;
+		function drawStars()
+		{
+			//console.log("drawStars run");
+			var stars=document.getElementById("stars");
+			if(stars.getContext)
+			{
+				ctx=stars.getContext("2d");
+				ctx.clearRect(0,0,stars.width,stars.height);
+				for(i=0;i<80;i++)
+				{
+					ctx.fillStyle="rgb(255,255,255)";
+					w=stars.width;
+					h=stars.height;
+					starPadding=0;
+					randW=Math.floor(Math.random()*(w*(1-starPadding)))+(w*starPadding);
+					randH=Math.floor(Math.random()*(h*(1-starPadding)))+(h*starPadding);
+					ctx.fillRect(randW,randH,1.25,1.25);
+					//console.log("drawn"+i+" at: "+randW+","+randH);
+				}
+			}
+		}
+		drawStars();
+		function arrayShuffle(a)
+		{
+			for(i=a.length-1;i>=0;i--)
+			{
+				index=Math.floor(Math.random()*(i+1));
+				element=a[index];
+				
+				a[index]=a[i];
+				a[i]=element;
+			}
+			return a;
+		}
+		var lightsOn=false;
+		function lights(s)
+		{
+			//$(".lights").css("opacity",1);
+			//$(".lights").css("opacity",0);
+			if(s=="on" && lightsOn==false)
+			{
+				lightsOn=true;
+				r=[1,2,3,4,5,6];
+				r=arrayShuffle(r);
+				console.log(r);
+				x=0;
+				lightsOnInterval=window.setInterval(function(){
+					if(x<6)
+					{
+						//$("#l"+r[x]).css("opacity",1);
+						$("#l"+r[x]).animate({opacity:1},(1/timeSpeed)*500000);
+						console.log(x);
+						x++;
+					}
+					else
+					{
+						console.log("xfail:"+x);
+						clearInterval(lightsOnInterval);
+					}
+				
+				},(1/timeSpeed)*750000);
+			}
+			else if(s=="off" && lightsOn==true)
+			{
+				lightsOn=false;
+				r=[1,2,3,4,5,6];
+				r=arrayShuffle(r);
+				console.log(r);
+				x=0;
+				lightsOnInterval=window.setInterval(function(){
+					if(x<6)
+					{
+						//$("#l"+r[x]).css("opacity",0);
+						$("#l"+r[x]).animate({opacity:0},(1/timeSpeed)*500000);
+						console.log("2:"+x);
+						x++;
+					}
+					else
+					{
+						console.log("xfail2:"+x);
+						clearInterval(lightsOnInterval);
+					}
+				
+				},(1/timeSpeed)*750000);
+			}
+		}
+		
+		//holds arranged colours for sky
+		//day then night
+		skyColors=[[144,245,248],[9,15,30]];
+		//holds current colours for sky
+		skyColor=[0,0,0];
+		//at24 0,0,51
+		//at12 204,255,255
+		
+		//$("#spaceRot").css("backgroundColor","red");
+		
+		for(i=1;i<=6;i++)
+		{
+			//add lights
+			$("#b"+i).append("<div id=l"+i+" class=lights></div>");
+		}
+
+		
+		window.setInterval(function()
+		{
+			w=window.innerWidth;
+			h=window.innerHeight;
+			//w=$(window).width();
+			//h=$(window).height();
+			$("#bg").css("width",w*1.1);
+			$("#bg").css("height",h*1.1);
+			$("#bg").css("marginLeft",-10);
+			$("#bg").css("marginTop",-10);
+			
+			$("#stars").css("width",w*1.1);
+			$("#stars").css("height",h*1.1);
+			$("#stars").css("marginLeft",-10);
+			$("#stars").css("marginTop",-10);
+			if(w>h){screenRatio=h;}else{screenRatio=w;}
+			$("#ground").css("width",w+200);
+			$("#ground").css("height",h/5);
+			$("#ground").css("marginTop",h-(h*0.1));
+
+			
+			if(w>h)
+			{
+				$(".room").css("width",h/3.65);
+				$(".room").css("height",h/3.65);
+				$(".lights").css("width",h/3.65);
+				$(".lights").css("height",h/3.65);
+				
+				$("#b1").css("marginTop",0);
+				$("#b1").css("marginLeft",0);
+				$("#b2").css("marginTop",0);
+				$("#b2").css("marginLeft",h/3.65);
+				$("#b3").css("marginTop",-h/3.65);
+				$("#b3").css("marginLeft",0);
+				$("#b4").css("marginTop",-h/3.65);
+				$("#b4").css("marginLeft",h/3.65);
+				$("#b5").css("marginTop",2*-h/3.65);
+				$("#b5").css("marginLeft",0);
+				$("#b6").css("marginTop",2*-h/3.65);
+				$("#b6").css("marginLeft",h/3.65);
+				
+				$("#sign").css("width",h/2.5);
+				$("#sign").css("height",h/2.5);
+			}
+			else
+			{
+				$(".room").css("width",w/5);
+				$(".room").css("height",w/5);
+				$(".lights").css("width",w/5);
+				$(".lights").css("height",w/5);
+			
+				$("#b1").css("marginTop",0);
+				$("#b1").css("marginLeft",0);
+				$("#b2").css("marginTop",0);
+				$("#b2").css("marginLeft",w/5);
+				$("#b3").css("marginTop",-w/5);
+				$("#b3").css("marginLeft",0);
+				$("#b4").css("marginTop",-w/5);
+				$("#b4").css("marginLeft",w/5);
+				$("#b5").css("marginTop",2*-w/5);
+				$("#b5").css("marginLeft",0);
+				$("#b6").css("marginTop",2*-w/5);
+				$("#b6").css("marginLeft",w/5);
+				
+				$("#sign").css("width",w/5);
+				$("#sign").css("height",w/5);
+			}
+			$("#building").css("marginLeft",w-$("#b1").width()*3);
+			$("#building").css("marginTop",(h*0.9)-$("#b1").width());
+			
+			$("#sign").css("marginLeft",parseInt((w*0.1)+$("#sign").width()/2));
+			$("#sign").css("marginTop",parseInt((h*0.905)-$("#sign").height()));
+			
+			$("#l2").hide();
+			
+			spaceRotSize=screenRatio*0.7;
+			$("#spaceRot").css("width",h*0.5);
+			$("#spaceRot").css("height",w*0.9);
+			$("#spaceRot").css("marginLeft",(w/2)-spaceRotSize);
+			$("#spaceRot").css("marginTop",h*0.55);
+			
+			sunMoonSize=4;
+			
+			$("#sun").css("width",spaceRotSize/sunMoonSize);
+			$("#sun").css("height",spaceRotSize/sunMoonSize);
+			$("#sun").css("marginLeft",0);
+			$("#sun").css("marginLeft",$("#spaceRot").width()/2-$("#sun").width()/2);
+			$("#sun").css("marginTop",($("#spaceRot").height()/5)*2);
+			$("#sun").css("marginTop",0);
+			
+			$("#moon").css("width",spaceRotSize/sunMoonSize);
+			$("#moon").css("height",spaceRotSize/sunMoonSize);
+			$("#moon").css("marginLeft",parseInt(($("#spaceRot").width()*1.05)-($("#moon").width()*1.3)));
+			$("#moon").css("marginLeft",$("#spaceRot").width()/2-$("#moon").width()/2);
+			$("#moon").css("marginTop",parseInt($("#spaceRot").height()*0.4));
+			$("#moon").css("marginTop",$("#spaceRot").height()*0.9);
+			
+			
+			
+			//console.log("w: "+w+"  h: "+h);
+			//console.log("bL: "+$("#building").css("left")+"  bT: "+$("#building").css("top"));
+			var d=new Date();
+			dHour=d.getHours();
+			dMin=d.getMinutes();
+			dSec=d.getSeconds();
+			dMSec=d.getMilliseconds();
+			dFullHour=dHour+(dMin/60)+(((dSec+(dMSec/1000))/60)/60);
+			//dFullHour=12;
+			dFullDayAngle=(dFullHour/24)*360;
+			dFullDayAngle-=(12/24)*360;
+			dFullDayAngle=dFullDayAngle*timeSpeed;
+			//console.log("dfh: "+dFullHour);
+			//console.log("dfda: "+dFullDayAngle);
+			$("#spaceRot").rotate(-dFullDayAngle);
+			$("#sun").rotate(dFullDayAngle);
+			$("#moon").rotate(dFullDayAngle);
+			dFullDayAngleUsable=dFullDayAngle%360;
+			if(dFullDayAngleUsable<0){dFullDayAngleUsable+=360;}
+			if(dFullDayAngleUsable>360){dFullDayAngleUsable-=360;}
+			//c=mod(initial at 0,end at 180)*(angle/180)
+			//red
+			skyColor[0]=skyColors[0][0]+Math.sin((Math.PI*(0.5*dFullDayAngleUsable/180)))*(skyColors[1][0]-skyColors[0][0]);
+			//green
+			skyColor[1]=skyColors[0][1]+Math.sin((Math.PI*(0.5*dFullDayAngleUsable/180)))*(skyColors[1][1]-skyColors[0][1]);
+			//blue
+			skyColor[2]=skyColors[0][2]+Math.sin((Math.PI*(0.5*dFullDayAngleUsable/180)))*(skyColors[1][2]-skyColors[0][2]);
+			//console.log(skyColor);
+			//console.log(Math.sin(Math.PI*(0.5*dFullDayAngleUsable/180)));
+			//console.log(Math.sin((Math.PI*(0.5*dFullDayAngleUsable/180)))*(skyColors[1][0]-skyColors[0][0]));
+			//console.log(dFullDayAngle);
+			//console.log(dFullDayAngleUsable);
+			if(dFullDayAngleUsable>=0&&dFullDayAngleUsable<180&&starsDrawn==false){starsDrawn=true;drawStars();}
+			if(dFullDayAngleUsable>=180&&dFullDayAngleUsable<360&&starsDrawn==true){starsDrawn=false;}
+			starOpacity=Math.sin((Math.PI*(0.5*dFullDayAngleUsable/180)));
+			$("#bg").css("backgroundColor","rgb("+parseInt(skyColor[0])+","+parseInt(skyColor[1])+","+parseInt(skyColor[2])+")");
+			$("#stars").css("opacity",starOpacity-0.2);
+			$("#all").css("opacity",1.6-starOpacity);
+			if(dFullDayAngleUsable>=90&&dFullDayAngleUsable<270){if(!lightsOn){lightsOn=false;lights("on");}}
+			else{if(lightsOn){lightsOn=true;lights("off");}}
+		},1);
+		window.setTimeout(function(){if(dFullDayAngleUsable>=90&&dFullDayAngleUsable<270){lightsOn=true;$(".lights").css("opacity",1);}else{lightsOn=false;$(".lights").css("opacity",0);}},2);
+	</script>
+</body>
+</html>

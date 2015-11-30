@@ -1,0 +1,196 @@
+<html>
+<head>
+	<title>Maze Generator</title>
+	<style>
+		p
+		{
+			position:relative;
+		}
+		.cell
+		{
+			background-color:red;
+			position:absolute;
+			padding:0px;
+		}
+		.wallN
+		{
+			border-top:1px inset grey;
+		}
+		.wallW
+		{
+			border-left:1px inset grey;
+		}
+		.wallE
+		{
+			border-right:1px inset grey;
+		}
+		.wallS{
+			border-bottom:1px inset grey;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<div id="loading">Loading...</div>
+	<div id="maze"></div>
+	<script>
+		keyDown=false;
+		function Cell(x,y)
+		{
+			this.wallN=true,
+			this.wallW=true,
+			this.wallE=true,
+			this.wallS=true,
+			this.x=x,
+			this.y=y,
+			this.id="cell-"+x+"-"+y
+		}
+		maze=
+		{
+			width:20,
+			height:20,
+			cells:[],
+			visited:[],
+			index:0,
+			lastIndex:0,
+			cellSize:15,
+			stop:false
+		};
+		if($(window).width()==600){
+			maze.cellSize=20;
+		}
+		else if($(window).width()==800){
+			maze.cellSize=25;
+		}
+		for(x=0;x<maze.width;x++)
+		{
+			maze.cells[x]=[]
+			for(y=0;y<maze.height;y++)
+			{
+				maze.cells[x][y]=new Cell(x,y);
+				$("<div id='cell-"+x+"-"+y+"' class='cell wallN wallW wallE wallS' style='width:"+maze.cellSize+";height:"+maze.cellSize+";margin-left:"+x*maze.cellSize+";margin-top:"+y*maze.cellSize+";'></div>").appendTo("#maze");
+			}
+		}
+		$("body").on("click",function(){location.reload();});
+		function mazeLoop(currentCell){
+			//start loop
+			//$("#currentCell").text("CurrentCell: "+currentCell.x+", "+currentCell.y);
+			$("#"+currentCell.id).css("backgroundColor","blue");
+			//add current cell to visited
+			maze.visited.push(currentCell);
+			$("#"+maze.visited[maze.lastIndex].id).css("backgroundColor","white");
+			if(maze.visited.length>1&&maze.lastIndex<maze.index)
+			{
+				//change walls
+				//move East to West
+				if(maze.visited[maze.visited.length-2].x+1==maze.visited[maze.visited.length-1].x)
+				{
+					$("#"+maze.visited[maze.visited.length-1].id).toggleClass("wallW");
+					$("#"+maze.visited[maze.visited.length-2].id).toggleClass("wallE");
+				}
+				//move West to East
+				else if(maze.visited[maze.visited.length-2].x-1==maze.visited[maze.visited.length-1].x)
+				{
+					$("#"+maze.visited[maze.visited.length-1].id).toggleClass("wallE");
+					$("#"+maze.visited[maze.visited.length-2].id).toggleClass("wallW");
+				}
+				//move South to North
+				else if(maze.visited[maze.visited.length-2].y+1==maze.visited[maze.visited.length-1].y)
+				{
+					$("#"+maze.visited[maze.visited.length-1].id).toggleClass("wallN");
+					$("#"+maze.visited[maze.visited.length-2].id).toggleClass("wallS");
+				}
+				//move South to North
+				else if(maze.visited[maze.visited.length-2].y-1==maze.visited[maze.visited.length-1].y)
+				{
+					$("#"+maze.visited[maze.visited.length-1].id).toggleClass("wallS");
+					$("#"+maze.visited[maze.visited.length-2].id).toggleClass("wallN");
+				}
+			}
+			
+			
+			//collect 4 neighbours
+			currentNeighbours=[];
+			if(currentCell.x>0){currentNeighbours.push(maze.cells[currentCell.x-1][currentCell.y]);}
+			if(currentCell.x<maze.width-1){currentNeighbours.push(maze.cells[currentCell.x+1][currentCell.y]);}
+			if(currentCell.y>0){currentNeighbours.push(maze.cells[currentCell.x][currentCell.y-1]);}
+			if(currentCell.y<maze.height-1){currentNeighbours.push(maze.cells[currentCell.x][currentCell.y+1]);}
+			//true
+			//remove from neighbours array
+			//false
+			//do nothing
+			
+			
+			currentNeighboursToSplice=[];
+			$.each(currentNeighbours,function(i,el)
+			{
+			//check if neighbours have been visited
+				$.each(maze.visited,function(i2,el2)
+				{
+					if(el==el2)
+					{
+						//true
+						//remove from neighbours array
+						currentNeighboursToSplice.push(el);
+					}
+						//false
+						//do nothing
+				});
+			});
+			$.each(currentNeighboursToSplice,function(i,el){
+				currentNeighbours=currentNeighbours.filter(function(el2)
+				{
+					return el2 != el;
+				});
+			});
+			currentNeighboursToSplice=[];
+			
+
+
+				
+			function makeMazeStep()
+			{
+			if(currentNeighbours.length>0)
+				{
+					//true
+					//randomly pick a valid neighbour
+					r=Math.floor(Math.random()*(currentNeighbours.length));
+					//make that neighbour the current cell
+					//loop
+					maze.lastIndex=maze.index;
+					maze.index=maze.visited.length+1;
+					mazeLoop(currentNeighbours[r]);
+				}
+				else
+				{
+					//false
+					if(maze.index<maze.lastIndex)
+					{
+						maze.visited.pop();
+					}
+					maze.lastIndex=maze.index;
+					maze.index-=1;
+					if(maze.index<0)
+					{
+						$(".cell").css("backgroundColor","white")
+						maze.stop=true;
+					}
+					else
+					{
+						mazeLoop(maze.visited[maze.index]);
+						//make previous cell the current cell
+					}
+				
+				}
+			}
+			while(!maze.stop){makeMazeStep();}
+				
+				
+		}
+		
+		//0,0 is current cell
+		mazeLoop(maze.cells[0][0]);
+		$("#loading").text("");
+	</script>
+</body>
+</html>
