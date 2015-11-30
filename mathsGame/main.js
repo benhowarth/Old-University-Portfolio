@@ -1,6 +1,11 @@
 $(function(){
 	$("#questionDialog").dialog({
 		autoOpen:true,
+		buttons:{
+			1:function(){$(this).dialog("close");},
+			2:function(){$(this).dialog("close");},
+			3:function(){$(this).dialog("close");},
+		},
 	});
 })
 function px2em(px) {
