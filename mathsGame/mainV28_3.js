@@ -1,3 +1,4 @@
+alert(1);
 function px2em(px) {
 	px=parseInt(px,10);
 	em=px/16;
@@ -341,6 +342,15 @@ $( document ).ready(function() {
 			$("#btnLeft").on("click",function(){dungeonObj.player.move("left");});
 			//right
 			$("#btnRight").on("click",function(){dungeonObj.player.move("right");});
+			
+			//up
+			$("#btnUp").on("touchstart",function(){dungeonObj.player.move("up");});
+			//down
+			$("#btnDown").on("touchstart",function(){dungeonObj.player.move("down");});
+			//left
+			$("#btnLeft").on("touchstart",function(){dungeonObj.player.move("left");});
+			//right
+			$("#btnRight").on("touchstart",function(){dungeonObj.player.move("right");});
 
 			$("html").keydown(function(e){
 				//up

@@ -1,3 +1,4 @@
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <script>
 window.addEventListener('load', function() {
     new FastClick(document.body);
