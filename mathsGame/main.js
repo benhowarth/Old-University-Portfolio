@@ -115,6 +115,7 @@ $(function(){
 					//console.log("Question correct!");
 					//alert("Question correct!");
 					dungeon.questionsLeft--;
+					questionNo++;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
 					dungeon.player.checkFinishLevel();
@@ -125,6 +126,7 @@ $(function(){
 					//console.log("Question incorrect!");
 					//alert("Question incorrect!");
 					dungeon.questionsLeft--;
+					questionNo++;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
 					dungeon.player.checkFinishLevel();
@@ -374,7 +376,7 @@ $(function(){
 					}
 				}
 			}
-			
+			questionNo=1;
 			if(!keysSetup){
 				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 					//up
