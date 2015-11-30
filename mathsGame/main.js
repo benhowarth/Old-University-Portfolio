@@ -25,6 +25,8 @@ $(function(){
 				click:function(){dungeon.answer(2);$(this).dialog("close");}
 			}
 		]);
+		qDlg.dialog("option","width",$(window).width());
+		qDlg.dialog("option","position",[0,150]);
 		qDlg.dialog("open");
 	}
 	//questionDisplay("question",2,"a","b","c");
@@ -284,6 +286,7 @@ $(function(){
 			//dungeonObj.makeRoom(8,8,2,2);
 			//dungeonObj.player.moveTo(8,8);
 			dungeonObj.player.moveTo(dungeonObj.width/2-dungeonObj.width/5/2,dungeonObj.height/2-dungeonObj.height/5/2);
+			//dungeonObj.move(0,0);
 			//dungeonObj.move(dungeonObj.width/2+dungeonObj.width/5/2,dungeonObj.height/2+dungeonObj.height/5/2);
 			
 			
@@ -397,13 +400,13 @@ $(function(){
 				
 				$("html").keydown(function(e){
 					//up
-					if(e.keyCode==87){dungeonObj.player.move("up");}
+					if(e.keyCode==87||e.keyCode==38){dungeonObj.player.move("up");}
 					//down
-					else if(e.keyCode==83){dungeonObj.player.move("down");}
+					else if(e.keyCode==83||e.keyCode==40){dungeonObj.player.move("down");}
 					//left
-					else if(e.keyCode==65){dungeonObj.player.move("left");}
+					else if(e.keyCode==65||e.keyCode==37){dungeonObj.player.move("left");}
 					//right
-					else if(e.keyCode==68){dungeonObj.player.move("right");}
+					else if(e.keyCode==68||e.keyCode==39){dungeonObj.player.move("right");}
 				});
 				keysSetup=true;
 			}
