@@ -1,3 +1,8 @@
+$(function(){
+	$("#questionDialog").dialog({
+		autoOpen:true,
+	});
+})
 function px2em(px) {
 	px=parseInt(px,10);
 	em=px/16;
