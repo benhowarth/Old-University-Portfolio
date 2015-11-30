@@ -9,30 +9,13 @@
 		function makePalette(colourNo)
 		{
 			colours=[];
-			range=100;
+			range=255/colourNo;
 			for(i=0;i<colourNo;i++)
 			{
-				if(colours.length<1)
-				{
-					r=r2=Math.floor(Math.random()*255);
-					g=g2=Math.floor(Math.random()*255);
-					b=b2=Math.floor(Math.random()*255);
-				}
-				else
-				{
-					r=r*-1+(255/i);
-					g=g*-1+(255/i);
-					b=b*-1+(255/i);
-					//r=r+(Math.floor(Math.random()*range)-(range/2));
-					//g=g+(Math.floor(Math.random()*range)-(range/2));
-					//b=b+(Math.floor(Math.random()*range)-(range/2));
-				}
-				/*if(r/255>1){r=r%255;}
-				else if(r/255<0){r=(r%255)*-1}
-				if(g/255>1){g=g%255;}
-				else if(g/255<0){g=(g%255)*-1}
-				if(b/255>1){b=b%255;}
-				else if(b/255<0){b=(b%255)*-1}*/
+				r=Math.floor((Math.random()*range)+(i*range));
+				g=Math.floor((Math.random()*range)+(i*range));
+				b=Math.floor((Math.random()*range)+(i*range));
+
 				newColour=[r,g,b];
 				colours.push(newColour);
 			}
