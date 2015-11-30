@@ -373,24 +373,28 @@ $(function(){
 			}
 			
 			if(!keysSetup){
-				//up
-				$("#btnUp").on("click",function(){dungeonObj.player.move("up");});
-				//down
-				$("#btnDown").on("click",function(){dungeonObj.player.move("down");});
-				//left
-				$("#btnLeft").on("click",function(){dungeonObj.player.move("left");});
-				//right
-				$("#btnRight").on("click",function(){dungeonObj.player.move("right");});
+				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+					//up
+					$("#btnUp").on("touchstart",function(){dungeonObj.player.move("up");});
+					//down
+					$("#btnDown").on("touchstart",function(){dungeonObj.player.move("down");});
+					//left
+					$("#btnLeft").on("touchstart",function(){dungeonObj.player.move("left");});
+					//right
+					$("#btnRight").on("touchstart",function(){dungeonObj.player.move("right");});
+				}
+				else{
+					//up
+					$("#btnUp").on("click",function(){dungeonObj.player.move("up");});
+					//down
+					$("#btnDown").on("click",function(){dungeonObj.player.move("down");});
+					//left
+					$("#btnLeft").on("click",function(){dungeonObj.player.move("left");});
+					//right
+					$("#btnRight").on("click",function(){dungeonObj.player.move("right");});
+				}
 				
-				//up
-				$("#btnUp").on("touchstart",function(){dungeonObj.player.move("up");});
-				//down
-				$("#btnDown").on("touchstart",function(){dungeonObj.player.move("down");});
-				//left
-				$("#btnLeft").on("touchstart",function(){dungeonObj.player.move("left");});
-				//right
-				$("#btnRight").on("touchstart",function(){dungeonObj.player.move("right");});
-
+				
 				$("html").keydown(function(e){
 					//up
 					if(e.keyCode==87){dungeonObj.player.move("up");}
