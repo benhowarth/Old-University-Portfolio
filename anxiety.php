@@ -28,8 +28,9 @@
 		</div>
 		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
-				<embed id="anxietyAppEmbed" src="anxiety/anxietyApp.html" width="450" height="450"></embed> 
+				<embed id="anxietyAppEmbed" src="anxiety/anxietyApp.html" width="100%" height="100%" class="noselect"></embed> 
 			</div>
+			<button onclick="location.href='anxiety/anxietyApp.html'">Fullscreen</button>
 		</div>
 	</div>
   
