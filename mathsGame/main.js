@@ -6,6 +6,7 @@ $(function(){
 		title:"Question x",
 		closeText:"hide",
 		modal:true,
+		beforeClose:function(event,ui){dungeon.player.questionExit();}
 	});
 	function questionDisplay(q,qNum,a1,a2,a3){
 		qDlg.dialog("option","title","Question "+qNum);
@@ -13,20 +14,20 @@ $(function(){
 		qDlg.dialog("option","buttons",[
 			{
 				text:a1,
-				click:function(){userAnswer=0;}
+				click:function(){dungeon.answer(0);$(this).dialog("close");}
 			},
 			{
 				text:a2,
-				click:function(){userAnswer=1;}
+				click:function(){dungeon.answer(1);$(this).dialog("close");}
 			},
 			{
 				text:a3,
-				click:function(){userAnswer=2;}
+				click:function(){dungeon.answer(2);$(this).dialog("close");}
 			}
 		]);
 		qDlg.dialog("open");
 	}
-	questionDisplay("question",2,"a","b","c");
+	//questionDisplay("question",2,"a","b","c");
 
 
 	function px2em(px) {
@@ -110,7 +111,7 @@ $(function(){
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
 					dungeon.player.score+=1;
 					//console.log("Question correct!");
-					alert("Question correct!");
+					//alert("Question correct!");
 					dungeon.questionsLeft--;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
@@ -120,7 +121,7 @@ $(function(){
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
 					//console.log("Question incorrect!");
-					alert("Question incorrect!");
+					//alert("Question incorrect!");
 					dungeon.questionsLeft--;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
@@ -234,15 +235,12 @@ $(function(){
 				answers=questionVar[1];
 				correctIndex=questionVar[2];
 				//console.log(question,answers,correctIndex);
-				dungeon.answer(prompt("Question: "+question+"\n 1: "+answers[0]+"\n 2: "+answers[1]+"\n 3: "+answers[2]));
+				questionDisplay(question,questionNo,answers[0],answers[1],answers[2]);
 			},
 			
 			answer:function(userAnswer){
-				if(String(parseInt(userAnswer)-1)==correctIndex){
+				if(String(userAnswer)==correctIndex){
 					dungeon.player.questionCorrect();
-				}
-				else if(userAnswer=="exit"||userAnswer==""||userAnswer==null){
-					dungeon.player.questionExit();
 				}
 				else{
 					dungeon.player.questionIncorrect();
