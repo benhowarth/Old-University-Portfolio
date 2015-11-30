@@ -71,7 +71,8 @@
 				$("<div id='cell-"+x+"-"+y+"' class='cell wallN wallW wallE wallS' style='width:"+maze.cellSize+";height:"+maze.cellSize+";margin-left:"+x*maze.cellSize+";margin-top:"+y*maze.cellSize+";'></div>").appendTo("#maze");
 			}
 		}
-		$("body").on("click",function(){location.reload();});
+		$("body").on("click",function(){location.reload(true)});
+		$("body").on("touchstart",function(){location.reload(true)});
 		function mazeLoop(currentCell){
 			//start loop
 			//$("#currentCell").text("CurrentCell: "+currentCell.x+", "+currentCell.y);
