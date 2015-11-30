@@ -1,5 +1,5 @@
-
 $(function(){
+	$("#dungeonHolder").draggable();
 	var qDlg=$("#questionDialog");
 	qDlg.dialog({
 		autoOpen:false,
