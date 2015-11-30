@@ -1,18 +1,14 @@
-alert(1);
 function px2em(px) {
 	px=parseInt(px,10);
 	em=px/16;
 	return em;
 }
-alert(2);
 
 $(window).load(function() {
-	alert(3);
 	keysSetup=false;
 	//dungeon object
 	$("#score").text("Score: 0\nLevel: 1\nQuestions Left: null");
-	alert(4);
-	/*
+	
 	dungeon=
 	{
 		width:50,
@@ -104,6 +100,7 @@ $(window).load(function() {
 				//console.log("Question exited!");
 			}
 		},
+		
 		//returns full dungeon in a printable form
 		fullText:function(){
 			dungeonText="";
@@ -122,18 +119,20 @@ $(window).load(function() {
 			}
 			return dungeonText;
 		},
+	
 		move:function(x,y){
 			dunLeft=px2em($("#dungeonHolder").css("marginLeft"));
 			dunTop=px2em($("#dungeonHolder").css("marginTop"));
-			////console.log(dunLeft,dunTop);
-			////console.log(x,y);
-			////console.log(dunLeft+x,dunTop+y);
+			//console.log(dunLeft,dunTop);
+			//console.log(x,y);
+			//console.log(dunLeft+x,dunTop+y);
 			dunLeft=dunLeft+0.6*x;
 			dunTop=dunTop+0.6*y;
-			////console.log(dunLeft,dunTop);
+			//console.log(dunLeft,dunTop);
 			$("#dungeonHolder").css("marginLeft",dunLeft+"em");
 			$("#dungeonHolder").css("marginTop",dunTop+"em");
 		},
+		
 		//builds room, column by column from left to right, with top left coord (xPos,yPos) and width of w and height of h
 		makeRoom:function(xPos,yPos,w,h){
 			dungeon.rooms.push([
@@ -152,11 +151,15 @@ $(window).load(function() {
 				{
 					//dungeon.ar[Math.floor((xPos)+x)][Math.floor((yPos)+y)]=(dungeon.rooms.length-1);
 					dungeon.ar[Math.floor((xPos)+x)][Math.floor((yPos)+y)]=".";
-					////console.log(Math.floor((yPos)+y)+", "+Math.floor((xPos)+x));
+					//console.log(Math.floor((yPos)+y)+", "+Math.floor((xPos)+x));
 				}
 			}
 		},
-		makeCorridor(x1,y1,x2,y2){
+		makeCorridor:function(x1,y1,x2,y2){
+			corridorXDir=0;
+			corridorL=0;
+			corridorYDir=0;
+			corridorH=0;
 			if(x1<x2){
 				corridorXDir=1;
 				corridorL=x2-x1;
@@ -225,15 +228,17 @@ $(window).load(function() {
 				{
 					//dungeon.ar[Math.floor((xPos)+x)][Math.floor((yPos)+y)]=(dungeon.rooms.length-1);
 					dungeon.ar[x][y]=" ";
-					////console.log(Math.floor((yPos)+y)+", "+Math.floor((xPos)+x));
+					//console.log(Math.floor((yPos)+y)+", "+Math.floor((xPos)+x));
 				}
 			}
 			dungeon.rooms=[];
 		}
 	};
+
+	
 	function dungeonGen(dungeonObj)
 	{
-		////console.log(dungeonObj.ar);
+		//console.log(dungeonObj.ar);
 		//add row, add all blocks in row, by column
 		for(x=0;x<dungeonObj.width;x++)
 		{
@@ -337,6 +342,7 @@ $(window).load(function() {
 				}
 			}
 		}
+		
 		if(!keysSetup){
 			//up
 			$("#btnUp").on("click",function(){dungeonObj.player.move("up");});
@@ -358,7 +364,7 @@ $(window).load(function() {
 
 			$("html").keydown(function(e){
 				//up
-				if(e.keyCode==87){//console.log("up");dungeonObj.player.move("up");}
+				if(e.keyCode==87){dungeonObj.player.move("up");}
 				//down
 				else if(e.keyCode==83){dungeonObj.player.move("down");}
 				//left
@@ -369,9 +375,9 @@ $(window).load(function() {
 			keysSetup=true;
 		}
 		$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
-		////console.log(dungeonObj.fullText());
+		//console.log(dungeonObj.fullText());
 		dungeonObj.render();
 	}
+	
 	dungeonGen(dungeon);
-	*/
 });

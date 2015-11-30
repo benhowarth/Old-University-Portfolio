@@ -1,4 +1,5 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script>
 window.addEventListener('load', function() {
     new FastClick(document.body);
