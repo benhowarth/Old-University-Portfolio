@@ -28,7 +28,7 @@
 		</div>
 		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
-				<embed id="dayNightEmbed" src="dayNight.html" width="450" height="450"></embed> 
+				<embed id="dayNightEmbed" src="dayNight.html" width="100%" height="50%"></embed> 
 			</div>
 		</div>
 	</div>

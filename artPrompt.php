@@ -28,7 +28,7 @@
 		</div>
 		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
-				<embed id="artPromptEmbed" src="artPrompt.html" width="450" height="700"></embed> 
+				<embed id="artPromptEmbed" src="artPrompt.html" width="450" height="900"></embed> 
 			</div>
 		</div>
 	</div>

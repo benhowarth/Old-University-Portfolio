@@ -28,7 +28,7 @@
 		</div>
 		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
-				<embed id="suvatEmbed" src="suvat.html" width="450" height="450"></embed> 
+				<embed id="suvatEmbed" src="suvat.html" width="450" height="550"></embed> 
 			</div>
 		</div>
 	</div>
