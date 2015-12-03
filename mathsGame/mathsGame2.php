@@ -97,9 +97,7 @@
 			$name=htmlentities($_POST['nameInput']);
 			$score=htmlentities($_POST['scoreEnd']);
 			$level=htmlentities($_POST['levelEnd']);
-			$sql='INSERT INTO scores'.
-			'(name,score,level)'.
-			"VALUES ('$name','$score','$level')";
+			$sql="INSERT INTO scores (name,score,level) VALUES ('$name','$score','$level')";
 			$retval=mysql_query($sql,$con);
 			if(!$retval){
 				die("Could not get data: ".mysql_error());
