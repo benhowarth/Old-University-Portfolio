@@ -73,6 +73,45 @@
 	<script src='main.js'></script>
 </head>
 <body class="noselect">
+	
+		<div>
+		<?php
+		$host="localhost";
+		$user="root";
+		$password="";
+		$con=mysql_connect($host,$user,$password);
+		if(!$con) {
+			echo '<p>MySQL Server is not connectedL</p>';
+		} else {
+			echo '<p>Connected to MySQL</p>';
+		}
+		mysql_select_db('highscores');
+		$sql='SELECT * FROM scores';
+		$retval=mysql_query($sql,$con);
+		if(!$retval){
+			die("Could not get data: ".mysql_error());
+		}
+		
+		
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$name=htmlentities($_POST['nameInput']);
+			$score=htmlentities($_POST['scoreEnd']);
+			$level=htmlentities($_POST['levelEnd']);
+			$sql='INSERT INTO scores'.
+			'(name,score,level)'.
+			"VALUES ('$name','$score','$level')";
+			$retval=mysql_query($sql,$con);
+			if(!$retval){
+				die("Could not get data: ".mysql_error());
+			}
+			header("Refresh:2; url=highscores.php");
+		}
+		
+		mysql_close($con);
+		?>
+	</div>
+
+	
 	<div id="dungeonHolderHolder">
 		<div id="dungeonHolder">The Dungeon Goes Here</div>
 	</div>
@@ -80,8 +119,12 @@
 		<div id="questionDialogText"></div>
 	</div>
 	<div id="gameOverDialog">
-		<div id="gameOverText"></div><br>
-		<div id="gameOverText2">Name:</div><input id="nameInput"></input>
+		<form id="scoreForm" name="scoreForm" method="post">
+			<div id="gameOverText"></div>
+			<input id="levelEnd" name="levelEnd"></input>
+			<input id="scoreEnd" name="scoreEnd"></input>
+			<div id="gameOverText2">Name:</div><input name="nameInput" id="nameInput"></input>
+		</form>
 	</div>
 	<br>
 	<div id="score">Score:0</div>

@@ -44,6 +44,8 @@ $(function(){
 		console.log(level);
 		console.log(score);
 		$("#gameOverText").text("You got to level "+level+"! And scored "+score+"!");
+		$("#scoreEnd").val(score);
+		$("#levelEnd").val(level);
 		gDlg.dialog("option","buttons",[
 			{
 				text:"OK",
@@ -56,7 +58,7 @@ $(function(){
 	}
 	
 	function submitScore(name,level,score){
-		
+		$("#scoreForm").submit();
 	}
 	
 	//questionDisplay("question",2,"a","b","c");
