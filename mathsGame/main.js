@@ -4,10 +4,20 @@ $(function(){
 	qDlg.dialog({
 		autoOpen:false,
 		title:"Question x",
-		closeText:"hide",
+		closeText:"X",
 		modal:true,
-		beforeClose:function(event,ui){dungeon.player.questionExit();}
+		beforeClose:function(event,ui){dungeon.player.questionIncorrect();}
 	});
+	var gDlg=$("#gameOverDialog");
+		gDlg.dialog({
+			autoOpen:false,
+			title:"Game Over!",
+			closeText:"X",
+			modal:true,
+			closeOnEscape: false,
+			open: function(event, ui) { $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); }
+
+		});
 	function questionDisplay(q,qNum,a1,a2,a3){
 		qDlg.dialog("option","title","Question "+qNum);
 		$("#questionDialogText").text(q);
@@ -25,10 +35,30 @@ $(function(){
 				click:function(){dungeon.answer(2);$(this).dialog("close");}
 			}
 		]);
-		qDlg.dialog("option","width",$(window).width());
+		qDlg.dialog("option","width",400);
 		qDlg.dialog("option","position",[0,150]);
 		qDlg.dialog("open");
 	}
+	function gameOverDisplay(score,level){
+		console.log("game over");
+		console.log(level);
+		console.log(score);
+		$("#gameOverText").text("You got to level "+level+"! And scored "+score+"!");
+		gDlg.dialog("option","buttons",[
+			{
+				text:"OK",
+				click:function(){submitScore($("#nameInput").val(),level,score);$(this).dialog("close");}
+			}
+		]);
+		gDlg.dialog("option","width",400);
+		gDlg.dialog("option","position",[0,150]);
+		gDlg.dialog("open");
+	}
+	
+	function submitScore(name,level,score){
+		
+	}
+	
 	//questionDisplay("question",2,"a","b","c");
 
 
@@ -100,12 +130,21 @@ $(function(){
 				},
 				checkFinishLevel:function(){
 					if(dungeon.questionsLeft==0){
-						//console.log("Level completed!");
-						//console.log("Your final score is "+dungeon.player.score+"!");
-						dungeon.clear();
-						dungeon.player.level++;
-						$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
-						dungeonGen(dungeon);
+						//questionsWrong+2 as questionNo starts at 1, questions wrong starts at 0 and this is checked after the last question, after which the question number has gone up but is not displayed (e.g. for after the 4th question, at the end is 5)
+						console.log(questionsWrong);
+						console.log(questionNo);
+						if(questionsWrong+2<=questionNo){
+							//console.log("Level completed!");
+							//console.log("Your final score is "+dungeon.player.score+"!");
+							dungeon.clear();
+							dungeon.player.level++;
+							$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
+							dungeonGen(dungeon);
+						}
+						else{
+							console.log(dungeon.player.score,dungeon.player.level);
+							dungeon.player.gameOver();
+						}
 					}
 				},
 				questionCorrect:function(){
@@ -127,6 +166,7 @@ $(function(){
 					//alert("Question incorrect!");
 					dungeon.questionsLeft--;
 					questionNo++;
+					questionsWrong++;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
 					dungeon.player.checkFinishLevel();
@@ -134,6 +174,11 @@ $(function(){
 				questionExit:function(){
 					dungeon.player.canMove=true;
 					//console.log("Question exited!");
+				},
+				gameOver:function(){
+					dungeon.player.canMove=false;
+					gameOverDisplay(dungeon.player.score,dungeon.player.level);
+					//$("#questionDialogText").dialog("open");
 				}
 			},
 			
@@ -377,6 +422,7 @@ $(function(){
 				}
 			}
 			questionNo=1;
+			questionsWrong=0;
 			if(!keysSetup){
 				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 					//up
