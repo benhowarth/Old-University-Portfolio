@@ -282,7 +282,8 @@ $(function(){
 				levelNo=dungeon.player.level;
 				if(levelNo==1){problem=adSubGen();}
 				else if(levelNo==2){problem=multiplyGen();}
-				else if(levelNo==3){problem=quadraticGen();}
+				else if(levelNo==3){problem=percentageGen();}
+				else if(levelNo==4){problem=quadraticGen();}
 				return problem;
 			},
 			
