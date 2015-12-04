@@ -86,11 +86,6 @@
 			echo '<p>Connected to MySQL</p>';
 		}
 		mysql_select_db('highscores');
-		$sql='SELECT * FROM scores';
-		$retval=mysql_query($sql,$con);
-		if(!$retval){
-			die("Could not get data: ".mysql_error());
-		}
 		
 		
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){

@@ -27,6 +27,7 @@
 			echo "<tr>";
 			echo "<td>Name:{$row['name']}</td>";
 			echo "<td>Score:{$row['score']}</td>";
+			echo "<td>Level:{$row['level']}</td>";
 			echo "<td>Date:{$row['timestamp']}</td>";
 			echo "</tr>";
 		}
