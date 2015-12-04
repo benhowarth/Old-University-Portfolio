@@ -13,7 +13,7 @@
   <script>
 	$(document).ready(function(){
 		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-			thing="iframe";
+			thing="iframe frameBorder='0'";
 		}
 		else{
 			thing="embed";
