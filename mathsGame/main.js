@@ -287,6 +287,8 @@ $(function(){
 				return problem;
 			},
 			
+			timeLeft:10,
+			
 			question:function(){			
 				questionVar=dungeon.questionGen();
 				question=questionVar[0];
@@ -294,6 +296,14 @@ $(function(){
 				correctIndex=questionVar[2];
 				//console.log(question,answers,correctIndex);
 				questionDisplay(question,questionNo,answers[0],answers[1],answers[2]);
+				dungeon.timer("start");
+			},
+			
+			timer:function(whatDo){
+				if(whatDo=="start"){
+					$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft;
+					timerInterval=window.setInterval(function(){$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);dungeon.timeLeft--;},1000)
+				}
 			},
 			
 			answer:function(userAnswer){

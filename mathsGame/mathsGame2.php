@@ -113,6 +113,7 @@
 	</div>
 	<div id="questionDialog">
 		<div id="questionDialogText"></div>
+		<div id="questionDialogTimer">Time left: null</div>
 	</div>
 	<div id="gameOverDialog">
 		<form id="scoreForm" name="scoreForm" method="post">
