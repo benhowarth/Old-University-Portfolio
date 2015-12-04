@@ -11,13 +11,16 @@
   <script src="lib/vendor/modernizr.js"></script>
   <script src="lib/vendor/fastclick.js"></script>
   <script>
-	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-		thing="iframe";
-	}
-	else{
-		thing="embed";
-	}
-	$("#game").append("<"+thing+" id='mathsGameEmbed' src='mathsGame/mathsGame2.php' width='100%' height='650'></"+thing+"> ");
+	$(document).ready(function(){
+		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+			thing="iframe";
+		}
+		else{
+			thing="embed";
+		}
+		
+		$("#game").append("<"+thing+" id='mathsGameEmbed' src='mathsGame/mathsGame2.php' width='100%' height='650'></"+thing+"> ");
+	});
   </script>
 </head>
 <body>
