@@ -430,18 +430,20 @@ $(function(){
 			oldScore=dungeon.player.score;
 			if(!keysSetup){
 				//if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+					speed=100;
 					//up
-					$("#btnUp").on("touchstart",function(){playerMoveUp=window.setInterval(function(){dungeonObj.player.move("up");},10);});
-					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveUp);});
+					$("#btnUp").on("touchstart",function(){playerMoveUp=setInterval(function(){dungeonObj.player.move("up");},speed);});
+					$("#btnUp").on("touchend",function(){clearInterval(playerMoveUp);});
 					//down
-					$("#btnUp").on("touchstart",function(){playerMoveDown=window.setInterval(function(){dungeonObj.player.move("down");},10);});
-					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveDown);});
+					$("#btnDown").on("touchstart",function(){playerMoveDown=setInterval(function(){dungeonObj.player.move("down");},speed);});
+					$("#btnDown").on("touchend",function(){clearInterval(playerMoveDown);});
 					//left
-					$("#btnUp").on("touchstart",function(){playerMoveLeft=window.setInterval(function(){dungeonObj.player.move("left");},10);});
-					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveLeft);});
+					$("#btnLeft").on("touchstart",function(){playerMoveLeft=setInterval(function(){dungeonObj.player.move("left");},speed);});
+					$("#btnLeft").on("touchend",function(){clearInterval(playerMoveLeft);});
 					//right
-					$("#btnUp").on("touchstart",function(){playerMoveRight=window.setInterval(function(){dungeonObj.player.move("right");},10);});
-					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveRight);});
+					$("#btnRight").on("touchstart",function(){playerMoveRight=setInterval(function(){dungeonObj.player.move("right");},speed);});
+					$("#btnRight").on("touchend",function(){clearInterval(playerMoveRight);});
+					
 				/*}
 				else{
 					//up
