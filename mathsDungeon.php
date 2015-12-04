@@ -28,7 +28,7 @@
 		</div>
 		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
-				<embed id="mathsGameEmbed" src="mathsGame/mathsGame2.html" width="100%" height="650"></embed> 
+				<embed id="mathsGameEmbed" src="mathsGame/mathsGame2.php" width="100%" height="650"></embed> 
 			</div>
 		</div>
 	</div>
