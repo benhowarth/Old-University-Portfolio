@@ -39,7 +39,7 @@ $(function(){
 				click:function(){dungeon.answer(50);$(this).dialog("close");}
 			}
 		]);
-		qDlg.dialog("option","width",400);
+		qDlg.dialog("option","width",200);
 		qDlg.dialog("option","position",[0,150]);
 		qDlg.dialog("open");
 	}
@@ -58,7 +58,7 @@ $(function(){
 				click:function(){submitScore($("#nameInput").val(),level,score);$(this).dialog("close");}
 			}
 		]);
-		gDlg.dialog("option","width",400);
+		gDlg.dialog("option","width",200);
 		gDlg.dialog("option","position",[0,150]);
 		gDlg.dialog("open");
 	}
