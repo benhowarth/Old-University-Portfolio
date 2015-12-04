@@ -33,11 +33,11 @@ $(function(){
 			{
 				text:a3,
 				click:function(){dungeon.answer(2);$(this).dialog("close");}
-			},
+			}/*,
 			{
 				text:"wrong",
 				click:function(){dungeon.answer(50);$(this).dialog("close");}
-			}
+			}*/
 		]);
 		qDlg.dialog("option","width",200);
 		qDlg.dialog("option","position",[0,150]);
