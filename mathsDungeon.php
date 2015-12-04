@@ -10,6 +10,15 @@
   <script src="lib/vendor/jquery.js"></script>
   <script src="lib/vendor/modernizr.js"></script>
   <script src="lib/vendor/fastclick.js"></script>
+  <script>
+	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+		thing="iframe";
+	}
+	else{
+		thing="embed";
+	}
+	$("#game").append("<"+thing+" id='mathsGameEmbed' src='mathsGame/mathsGame2.php' width='100%' height='650'></"+thing+"> ");
+  </script>
 </head>
 <body>
   
@@ -27,8 +36,8 @@
 			</p>
 		</div>
 		<div class="columns medium-6 small-12">
-			<div class="embed-cont">
-				<embed id="mathsGameEmbed" src="mathsGame/mathsGame2.php" width="100%" height="650"></embed> 
+			<div id="game" class="embed-cont">
+				
 			</div>
 		</div>
 	</div>
