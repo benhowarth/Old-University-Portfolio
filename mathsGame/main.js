@@ -431,13 +431,13 @@ $(function(){
 			if(!keysSetup){
 				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 					//up
-					$("#btnUp").on("touchstart",function(){dungeonObj.player.move("up");});
+					$("#btnUp").on("taphold",function(){dungeonObj.player.move("up");});
 					//down
-					$("#btnDown").on("touchstart",function(){dungeonObj.player.move("down");});
+					$("#btnDown").on("taphold",function(){dungeonObj.player.move("down");});
 					//left
-					$("#btnLeft").on("touchstart",function(){dungeonObj.player.move("left");});
+					$("#btnLeft").on("taphold",function(){dungeonObj.player.move("left");});
 					//right
-					$("#btnRight").on("touchstart",function(){dungeonObj.player.move("right");});
+					$("#btnRight").on("taphold",function(){dungeonObj.player.move("right");});
 				}
 				else{
 					//up
