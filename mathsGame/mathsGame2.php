@@ -71,6 +71,7 @@
 	<script src='shuffle.js'></script>
 	<script src='question_quadraticV1.js'></script>
 	<script src='question_addition_subtraction.js'></script>
+	<script src='question_multiplication.js'></script>
 	<script src='main.js'></script>
 </head>
 <body class="noselect">
