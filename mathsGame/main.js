@@ -279,11 +279,14 @@ $(function(){
 			},
 			
 			questionGen:function(){
-				problem=quadraticGen();
+				levelNo=dungeon.player.level;
+				if(levelNo==1){problem=adSubGen();}
+				//else if(levelNo==2){}
+				else if(levelNo==2){problem=quadraticGen();}
 				return problem;
 			},
 			
-			question:function(){
+			question:function(){			
 				questionVar=dungeon.questionGen();
 				question=questionVar[0];
 				answers=questionVar[1];
