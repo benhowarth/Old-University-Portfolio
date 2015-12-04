@@ -6,7 +6,7 @@ $(function(){
 		title:"Question x",
 		closeText:"X",
 		modal:true,
-		beforeClose:function(event,ui){dungeon.player.questionIncorrect();}
+		beforeClose:function(event,ui){dungeon.player.questionExit();}
 	});
 	var gDlg=$("#gameOverDialog");
 		gDlg.dialog({
@@ -33,6 +33,10 @@ $(function(){
 			{
 				text:a3,
 				click:function(){dungeon.answer(2);$(this).dialog("close");}
+			},
+			{
+				text:"wrong",
+				click:function(){dungeon.answer(50);$(this).dialog("close");}
 			}
 		]);
 		qDlg.dialog("option","width",400);
@@ -134,10 +138,8 @@ $(function(){
 				},
 				checkFinishLevel:function(){
 					if(dungeon.questionsLeft==0){
-						//questionsWrong+2 as questionNo starts at 1, questions wrong starts at 0 and this is checked after the last question, after which the question number has gone up but is not displayed (e.g. for after the 4th question, at the end is 5)
-						console.log(questionsWrong);
-						console.log(questionNo);
-						if(questionsWrong+2<=questionNo){
+						console.log(dungeon.questionsLeft,oldScore,dungeon.player.score)
+						if(dungeon.player.score-oldScore>0){
 							//console.log("Level completed!");
 							//console.log("Your final score is "+dungeon.player.score+"!");
 							dungeon.clear();
@@ -155,7 +157,7 @@ $(function(){
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
 					dungeon.player.score+=1;
-					//console.log("Question correct!");
+					console.log("Question correct!");
 					//alert("Question correct!");
 					dungeon.questionsLeft--;
 					questionNo++;
@@ -166,11 +168,10 @@ $(function(){
 				questionIncorrect:function(){
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
-					//console.log("Question incorrect!");
+					console.log("Question incorrect!");
 					//alert("Question incorrect!");
 					dungeon.questionsLeft--;
 					questionNo++;
-					questionsWrong++;
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
 					dungeon.player.checkFinishLevel();
@@ -426,7 +427,7 @@ $(function(){
 				}
 			}
 			questionNo=1;
-			questionsWrong=0;
+			oldScore=dungeon.player.score;
 			if(!keysSetup){
 				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 					//up
