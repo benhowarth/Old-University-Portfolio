@@ -429,16 +429,20 @@ $(function(){
 			questionNo=1;
 			oldScore=dungeon.player.score;
 			if(!keysSetup){
-				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				//if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 					//up
-					$("#btnUp").on("taphold",function(){dungeonObj.player.move("up");});
+					$("#btnUp").on("touchstart",function(){playerMoveUp=window.setInterval(function(){dungeonObj.player.move("up");},10);});
+					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveUp);});
 					//down
-					$("#btnDown").on("taphold",function(){dungeonObj.player.move("down");});
+					$("#btnUp").on("touchstart",function(){playerMoveDown=window.setInterval(function(){dungeonObj.player.move("down");},10);});
+					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveDown);});
 					//left
-					$("#btnLeft").on("taphold",function(){dungeonObj.player.move("left");});
+					$("#btnUp").on("touchstart",function(){playerMoveLeft=window.setInterval(function(){dungeonObj.player.move("left");},10);});
+					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveLeft);});
 					//right
-					$("#btnRight").on("taphold",function(){dungeonObj.player.move("right");});
-				}
+					$("#btnUp").on("touchstart",function(){playerMoveRight=window.setInterval(function(){dungeonObj.player.move("right");},10);});
+					$("#btnUp").on("touchend",function(){window.clearInterval(playerMoveRight);});
+				/*}
 				else{
 					//up
 					$("#btnUp").on("click",function(){dungeonObj.player.move("up");});
@@ -448,7 +452,7 @@ $(function(){
 					$("#btnLeft").on("click",function(){dungeonObj.player.move("left");});
 					//right
 					$("#btnRight").on("click",function(){dungeonObj.player.move("right");});
-				}
+				}*/
 				
 				
 				$("html").keydown(function(e){
