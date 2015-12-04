@@ -77,15 +77,15 @@
 		<div>
 		<?php
 		$host="localhost";
-		$user="root";
-		$password="";
+		$user="901992";
+		$password="freeweb7";
 		$con=mysql_connect($host,$user,$password);
 		if(!$con) {
 			echo '<p>MySQL Server is not connectedL</p>';
 		} else {
 			echo '<p>Connected to MySQL</p>';
 		}
-		mysql_select_db('highscores');
+		mysql_select_db('901992');
 		
 		
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){

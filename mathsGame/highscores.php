@@ -6,8 +6,8 @@
 	<div>
 		<?php
 		$host="localhost";
-		$user="root";
-		$password="";
+		$user="901992";
+		$password="freeweb7";
 		$con=mysql_connect($host,$user,$password);
 		if(!$con) {
 			echo '<p>MySQL Server is not connectedL</p>';
@@ -15,7 +15,7 @@
 			echo '<p>Connected to MySQL</p>';
 		}
 		echo "<h1>Highscores</h1>";
-		mysql_select_db('highscores');
+		mysql_select_db('901992');
 		$sql='SELECT * FROM scores ORDER BY score DESC LIMIT 10';
 		$retval=mysql_query($sql,$con);
 		if(!$retval){
