@@ -22,7 +22,16 @@
 	<div class="block row fullWidth">
 		<div class="columns medium-12 small-12">
 			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
+			Hi, I'm Ben! This website is a little place to showcase some of my coding projects.
+			<br>
+			Have a look through my <a href="caseStudies.php">Case Studies</a>.
+			See my <a href="testimonials.php">testimonials</a>.
+			Or even read <a href="about.php">about me</a>.
+			<br>
+			<br>
+			This website is created using HTML, CSS, Javascript,
+			<a href="http://foundation.zurb.com/">ZURB's Foundation</a>,
+			<a href="http://packery.metafizzy.co/">Packery</a>, and jQuery.
 			</p>
 		</div>
 	</div>

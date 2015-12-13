@@ -34,15 +34,46 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
 			<div id="game" class="embed-cont">
 				
 			</div>
+			<button onclick="location.href='mathsGame/mathsGame2.php'">Fullscreen</button>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+				This is the main portion of my A-Level Computing project. It is an old-school,
+				randomly generated, dungeon crawler rogue-like, where all of the scenery is made
+				up of ASCII characters.
+				<br>
+				<br>
+				It is intended to be used as a Maths revision tool,
+				as the player ( <strong>@</strong> ) can explore the generated level, hit a question tile and answer a
+				randomly-generated Maths question, which is based on what level the player is on.
+				The player has 10 seconds to answer each question.
+				The player moves to the next level when all questions on that level have been answered
+				and at least one is correct, if all are wrong, the player loses and can submit their score
+				to the highscores table.
+				<br>
+				<br>
+				The player can move around the level, using either <strong>WASD</strong>, the
+				<strong>arrow keys</strong> or the <strong>touch based arrows</strong>.
+				<br>
+				<br>
+				I tried to write as simple a dungeon generation algorithm as possible, it is
+				quick and fairly efficient, it consists of dropping a set amount of rooms and then
+				connecting each room to the next with a corridor, ensuring the whole map is traversable.
+				<br>
+				I have written separate, relatively simple, algorithms to generate questions on
+				addition, subtraction, multiplication, percentages and quadratic factorising.
+				<br>
+				<br>
+				During this project, I had to learn more PHP, MySQL and server management than I ever
+				had before. I found it really interesting and it gave me a further understanding of
+				server side management and development, which can add incredible scope to client side
+				code.
+			</p>
+		</div>
+		
 	</div>
   
   

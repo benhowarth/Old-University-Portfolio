@@ -303,15 +303,14 @@ $(function(){
 				if(whatDo=="start"){
 					$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);
 					timerInterval=window.setInterval(function(){
+						$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);
+						dungeon.timeLeft--;
 						if(dungeon.timeLeft==0){
 							window.clearInterval(timerInterval);
 							dungeon.timeLeft=10;
 							dungeon.player.questionIncorrect();
 							$("#questionDialog").dialog("close");
 						}
-						$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);
-						dungeon.timeLeft--;
-
 					},1000)
 				}
 			},

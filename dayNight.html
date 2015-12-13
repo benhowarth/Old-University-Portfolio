@@ -143,6 +143,11 @@
 		$(document).ready(function(){loaded();});
 		document.ontouchmove=function(e){e.preventDefault();}
 		timeSpeed=5000;
+		$("body").on("click",function(){
+			if(timeSpeed==5000){timeSpeed=1;}
+			else{timeSpeed=5000;}
+			loaded();
+		});
 		//set up stars
 		starsDrawn=false;
 		function drawStars()

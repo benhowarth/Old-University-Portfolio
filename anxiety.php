@@ -22,16 +22,33 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
 				<embed id="anxietyAppEmbed" src="anxiety/anxietyApp.html" width="100%" height="100%" class="noselect"></embed> 
 			</div>
 			<button onclick="location.href='anxiety/anxietyApp.html'">Fullscreen</button>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+			This app is the result of my EPQ, or Extended Project Qualification, in which,
+			I chose to create an artefact, seen here, and an accompanying mini-dissertation.
+			It is for someone experiencing a panic attack to open and interact with to hopefully
+			distract and calm them. It includes many randomly generated elements to keep it fresh
+			and interesting to the end user.
+			<br>
+			<br>
+			The idea is that the user controls a central 'planet', with surrounding 'asteroid belts',
+			and a glow, which always accompanies the random colour (calm, subdued colours) of the planet and asteroids. The user
+			can drag the planet around with a pleasant, delayed motion. The randomly  generated star and
+			planets create a dual layered parallax background.
+			<br>
+			<br>
+			In addition, I use a sine wave and scales to generate calm, ambient music.
+			<br>
+			<br>
+			This is all created with <a href="http://p5js.org/">p5.js</a>.
+			</p>
+		</div>
+		
 	</div>
   
   <script src="js/vendor/jquery.js"></script>

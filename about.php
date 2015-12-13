@@ -22,10 +22,38 @@
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
 			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
+			For all of my life, I've been interested in creating. I started using computers from very
+			early on (from as early as 2) and the possibilities of them fascinated me, I began to create art and animation
+			using Adobe Flash from as early as 7. After my transition to secondary school, I began to
+			grow curious about making video games, which I have wanted to make since I first played
+			Pokémon Fire Red on my Gameboy Advance. This curiosity about making video games lead to
+			me learning early and simple programming, while that love of video games and fun has stayed,
+			I have also gained, over time, an appreciation of code form, useful applications and algorithms and the power
+			of data.
+			<br>
+			<br>
+			I'm always eager to learn new libraries and tinker with new languages, and I'm always creating.
+			<br>
+			<br>
+			I love collaboration, which filters into my life through Explorer Scouts, my love of comedy and improvisation
+			and my integral role in my school's Computer Science/Programming Club. I've always found this to be an important
+			part of life, creating and specifically, computer science and software devlopment.
+			<br>
+			<br>
+			Hopefully someday, I will assist in creating some useful application that could, even in a
+			small way, affect humanity and the world for the better.
 			</p>
 		</div>
 		<div class="columns large-4 large-pull-1 medium-3 medium-pull-1 small-12">
+			<img class="fullWidth" src="http://placehold.it/600x600"/>
+			<br>
+			<br>
+			<img class="fullWidth" src="http://placehold.it/600x600"/>
+			<br>
+			<br>
+			<img class="fullWidth" src="http://placehold.it/600x600"/>
+			<br>
+			<br>
 			<img class="fullWidth" src="http://placehold.it/600x600"/>
 		</div>
 	</div>

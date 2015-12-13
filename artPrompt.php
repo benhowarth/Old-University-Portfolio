@@ -22,15 +22,23 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
 			<div class="embed-cont">
 				<embed id="artPromptEmbed" src="artPrompt.html" width="450" height="900"></embed> 
 			</div>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+			Aside from coding, I enjoy making art and animation in my spare time. However, sometimes
+			I need inspiration to get me out of art block, this tool generates a random colour palette,
+			outputs HEX and RGB values and gives a noun, adjective and verb from an online service called
+			<a href="https://wordnik.com/">Wordnik</a> using an AJAX call.
+			<br>
+			</br>
+			I have found this tool to be useful and I may, at some point, polish it up and release it
+			to the public as a web service with customisable options.
+			</p>
+		</div>
+		
 	</div>
   
   <script src="js/vendor/jquery.js"></script>

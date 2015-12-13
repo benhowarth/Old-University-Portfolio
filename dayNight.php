@@ -22,15 +22,29 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
+			<strong>Click to cycle between a quick day/night cycle or a real time cycle which matches your
+			device's current time.</strong>
 			<div class="embed-cont">
 				<embed id="dayNightEmbed" src="dayNight.html" width="100%" height="50%"></embed> 
 			</div>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+			This is a prototype idea for my interactive art and animation website. It is a simple
+			day/night cycle test, each room in the building is meant to be a link to each different
+			section of that website, however, I have disabled them here.
+			<br>
+			<br>
+			I use a sine wave to move the sun/moon in a circular manner and smoothly transition from the
+			night sky colour to day sky colour and vice versa.
+			<br>
+			The lights in the building also turn on and off randomly when it becomes night and day
+			respectively.
+			<br>
+			In addition, every 'night', the sky generates some random constellations using the canvas.
+			</p>
+		</div>
+		
 	</div>
   
   <script src="js/vendor/jquery.js"></script>

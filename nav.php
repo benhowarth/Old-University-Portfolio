@@ -11,6 +11,7 @@
 		</ul>
 		<ul class="right">
 			<li><a href="about.php">About Me</a></li>
+			<li><a href="testimonials.php">Testimonials</a></li>
 			<li class="has-dropdown">
 				<a href="caseStudies.php">Case Studies</a>
 				<ul class="dropdown">

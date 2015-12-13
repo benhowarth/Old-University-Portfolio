@@ -22,15 +22,26 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
+			<strong>You can input any 3 variables, press run, and the other two are calculated.</strong>
 			<div class="embed-cont">
 				<embed id="suvatEmbed" src="suvat.html" width="450" height="550"></embed> 
 			</div>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+			During my AS Level Mechanics, I had a little trouble with remembering the
+			SUVAT equations. So I decided that working on a calculator to help other students
+			would help me to memorise the equations themselves and how to rearrange them.
+			<br>
+			<br>
+			I had to rearrange each equation multiple times for the calculator, which helped me
+			understand the relationship between the variables much more fully.
+			<br>
+			<br>
+			I am still working to improve the efficiency and fix any underlying bugs.
+			</p>
+		</div>
+		
 	</div>
   
   <script src="js/vendor/jquery.js"></script>

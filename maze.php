@@ -22,16 +22,30 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam placerat sapien ipsum, id euismod purus sagittis at. Nullam accumsan, tellus vel mollis gravida, diam arcu dictum metus, ut scelerisque odio ipsum sed metus. Aenean laoreet, enim nec finibus ultricies, turpis ipsum porttitor augue, sit amet suscipit velit ante ac arcu. In sagittis ultricies sollicitudin. Aenean mollis at erat a fermentum. Aenean venenatis rutrum est finibus vestibulum. Nulla facilisi. Maecenas mattis efficitur eros, quis posuere quam. Nullam a ligula erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in diam ac turpis tristique viverra at et risus. Nullam euismod, orci id facilisis euismod, lorem velit interdum enim, et aliquet leo lacus eget lorem. Aenean mauris metus, varius feugiat dictum at, accumsan sit amet nisl. Donec ligula ipsum, gravida at commodo eget, tristique quis est.
-			</p>
-		</div>
-		<div class="columns medium-6 small-12">
 			<h3 class="lob">Click the maze to refresh</h3>
 			<div class="embed-cont">
 				<embed id="mazeEmbed" src="mazeGen.html" width="450" height="450"></embed> 
 			</div>
 		</div>
+		<div class="columns medium-6 small-12">
+			<p>
+			After stumbling upon <a href="http://www.jamisbuck.org/presentations/rubyconf2011/">a talk by Jamis Buck</a> from Ruby Conference 2011, I became interested in mazes
+			and how they can be generated. I chose to try to create a maze generator based on the
+			recursive backtracking algorithm, as it seemed just challenging enough, while being efficient
+			and creating interesting and varied perfect mazes.
+			<br>
+			<br>
+			Click the maze on this page to generate a new maze (there may be a longer loading time on mobile, which I am working to fix).
+			<br>
+			<br>
+			Throughout staying up far too long testing and improving, I learn a lot about
+			trees (as mazes can be effectively modelled as trees) and traversal algorithms.
+			<br>
+			<br>
+			I'm still trying to optimise my code and it's slower refresh time on mobile.
+			</p>
+		</div>
+		
 	</div>
   
   
