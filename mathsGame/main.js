@@ -154,6 +154,7 @@ $(function(){
 					}
 				},
 				questionCorrect:function(){
+					dungeon.timer("stop");
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
 					dungeon.player.score+=1;
@@ -166,6 +167,7 @@ $(function(){
 					dungeon.player.checkFinishLevel();
 				},
 				questionIncorrect:function(){
+					dungeon.timer("stop");
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
 					console.log("Question incorrect!");
@@ -289,14 +291,14 @@ $(function(){
 			
 			timeLeft:10,
 			
-			question:function(){			
+			question:function(){
 				questionVar=dungeon.questionGen();
 				question=questionVar[0];
 				answers=questionVar[1];
 				correctIndex=questionVar[2];
 				//console.log(question,answers,correctIndex);
-				questionDisplay(question,questionNo,answers[0],answers[1],answers[2]);
 				dungeon.timer("start");
+				questionDisplay(question,questionNo,answers[0],answers[1],answers[2]);
 			},
 			
 			timer:function(whatDo){
@@ -305,13 +307,18 @@ $(function(){
 					timerInterval=window.setInterval(function(){
 						$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);
 						dungeon.timeLeft--;
+						console.log(dungeon.timeLeft);
 						if(dungeon.timeLeft==0){
-							window.clearInterval(timerInterval);
-							dungeon.timeLeft=10;
 							dungeon.player.questionIncorrect();
-							$("#questionDialog").dialog("close");
+							dungeon.timer("stop");
 						}
 					},1000)
+				}
+				else if(whatDo=="stop"){
+					console.log(1);
+					window.clearInterval(timerInterval);
+					dungeon.timeLeft=10;
+					$("#questionDialog").dialog("close");
 				}
 			},
 			
