@@ -154,10 +154,10 @@ $(function(){
 					}
 				},
 				questionCorrect:function(){
-					dungeon.timer("stop");
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
-					dungeon.player.score+=1;
+					dungeon.player.score+=dungeon.timeLeft;
+					dungeon.timer("stop");
 					console.log("Question correct!");
 					//alert("Question correct!");
 					dungeon.questionsLeft--;
@@ -167,9 +167,9 @@ $(function(){
 					dungeon.player.checkFinishLevel();
 				},
 				questionIncorrect:function(){
-					dungeon.timer("stop");
 					dungeon.player.canMove=true;
 					dungeon.ar[dungeon.player.x][dungeon.player.y]=".";
+					dungeon.timer("stop");
 					console.log("Question incorrect!");
 					//alert("Question incorrect!");
 					dungeon.questionsLeft--;
@@ -310,7 +310,6 @@ $(function(){
 						console.log(dungeon.timeLeft);
 						if(dungeon.timeLeft==0){
 							dungeon.player.questionIncorrect();
-							dungeon.timer("stop");
 						}
 					},1000)
 				}

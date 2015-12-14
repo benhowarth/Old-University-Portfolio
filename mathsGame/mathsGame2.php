@@ -84,9 +84,8 @@
 		$password="freeweb7";
 		$con=mysql_connect($host,$user,$password);
 		if(!$con) {
-			echo '<p>MySQL Server is not connectedL</p>';
+			echo '<p>MySQL Server is not connected</p>';
 		} else {
-			echo '<p>Connected to MySQL</p>';
 		}
 		mysql_select_db('901992');
 		
