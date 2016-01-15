@@ -32,48 +32,60 @@
 		a=suvat[3]=parseFloat($("#iA").val());
 		t=suvat[4]=parseFloat($("#iT").val());
 		console.log(suvat);
-		//v=u+at
-		//s=ut+1/2at^2
-		//s=1/2(u+v)t
-		//v^2=u^2+2as
-		//s=vt-1/2at^2
 		
-		
-		//FIX SQUARE ROOT AND NEGATIVES
-		
-		//suv
-		if(!isNaN(s)&&!isNaN(u)&&!isNaN(v)){a=((v*v)-(u*u))/(2*s);t=(v-u)/a;};
-		//sva
-		if(!isNaN(s)&&!isNaN(v)&&!isNaN(a)){u=Math.sqrt((v*v)-(2*a*s));t=(v-u)/a;};
-		//sat
-		if(!isNaN(s)&&!isNaN(a)&&!isNaN(t)){u=((s/t)-(0.5*a*t));v=u+(a*t);};
-		//sua
-		if(!isNaN(s)&&!isNaN(u)&&!isNaN(a)){v=Math.sqrt((u*u)+(2*a*s));t=(v-u)/a;};
-		//sut
-		if(!isNaN(s)&&!isNaN(u)&&!isNaN(t)){v=(((2*s)/t)-u);a=(v-u)/t;};
-		//svt
-		if(!isNaN(s)&&!isNaN(v)&&!isNaN(t)){u=(((2*s)/t)-v);a=(v-u)/t;};
-		
-		//uva
-		if(!isNaN(u)&&!isNaN(v)&&!isNaN(a)){s=((v*v)-(u*u))/(2*a);t=(v-u)/a;};
-		//uvt
-		if(!isNaN(u)&&!isNaN(v)&&!isNaN(t)){s=((u+v)*t)/2;a=(v-u)/t;};
-		//uat
-		if(!isNaN(u)&&!isNaN(a)&&!isNaN(t)){s=(u*t)+(0.5*a*(t*t));v=u+(a*t);};
-		
-		//vat
-		if(!isNaN(v)&&!isNaN(a)&&!isNaN(t)){s=(v*t)-(0.5*a*(t*t));u=v-(a*t);};
-		
-		sfNo=3;
-		suvat[0]=s.toPrecision(sfNo);
-		suvat[1]=u.toPrecision(sfNo);
-		suvat[2]=v.toPrecision(sfNo);
-		suvat[3]=a.toPrecision(sfNo);
-		suvat[4]=t.toPrecision(sfNo);
-		$.each(suvat,function(i,el){
-			if(isNaN(el)){suvat[i]="?";}
+		varsEntered=0;
+		$.each(suvat,function(i,val){
+			if(!isNaN(val)){varsEntered++;}
+			//console.log(varsEntered);
 		});
-		$("#result").text("s: "+suvat[0]+" u: "+suvat[1]+" v: "+suvat[2]+" a: "+suvat[3]+" t: "+suvat[4]);
+		if(varsEntered==3){
+			
+			//v=u+at
+			//s=ut+1/2at^2
+			//s=1/2(u+v)t
+			//v^2=u^2+2as
+			//s=vt-1/2at^2
+			
+			
+			//FIX SQUARE ROOT AND NEGATIVES
+			
+			//suv
+			if(!isNaN(s)&&!isNaN(u)&&!isNaN(v)){a=((v*v)-(u*u))/(2*s);t=(v-u)/a;};
+			//sva
+			if(!isNaN(s)&&!isNaN(v)&&!isNaN(a)){u=Math.sqrt((v*v)-(2*a*s));t=(v-u)/a;};
+			//sat
+			if(!isNaN(s)&&!isNaN(a)&&!isNaN(t)){u=((s/t)-(0.5*a*t));v=u+(a*t);};
+			//sua
+			if(!isNaN(s)&&!isNaN(u)&&!isNaN(a)){v=Math.sqrt((u*u)+(2*a*s));t=(v-u)/a;};
+			//sut
+			if(!isNaN(s)&&!isNaN(u)&&!isNaN(t)){v=(((2*s)/t)-u);a=(v-u)/t;};
+			//svt
+			if(!isNaN(s)&&!isNaN(v)&&!isNaN(t)){u=(((2*s)/t)-v);a=(v-u)/t;};
+			
+			//uva
+			if(!isNaN(u)&&!isNaN(v)&&!isNaN(a)){s=((v*v)-(u*u))/(2*a);t=(v-u)/a;};
+			//uvt
+			if(!isNaN(u)&&!isNaN(v)&&!isNaN(t)){s=((u+v)*t)/2;a=(v-u)/t;};
+			//uat
+			if(!isNaN(u)&&!isNaN(a)&&!isNaN(t)){s=(u*t)+(0.5*a*(t*t));v=u+(a*t);};
+			
+			//vat
+			if(!isNaN(v)&&!isNaN(a)&&!isNaN(t)){s=(v*t)-(0.5*a*(t*t));u=v-(a*t);};
+			
+			sfNo=3;
+			suvat[0]=s.toPrecision(sfNo);
+			suvat[1]=u.toPrecision(sfNo);
+			suvat[2]=v.toPrecision(sfNo);
+			suvat[3]=a.toPrecision(sfNo);
+			suvat[4]=t.toPrecision(sfNo);
+			$.each(suvat,function(i,el){
+				if(isNaN(el)){suvat[i]="?";}
+			});
+			$("#result").text("s: "+suvat[0]+" u: "+suvat[1]+" v: "+suvat[2]+" a: "+suvat[3]+" t: "+suvat[4]);
+		}
+		else{
+			$("#result").text("Enter 3 variables please")
+		}
 	}
 	</script>
 </body>

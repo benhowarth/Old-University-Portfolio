@@ -10,6 +10,20 @@
   <script src="lib/vendor/jquery.js"></script>
   <script src="lib/vendor/modernizr.js"></script>
   <script src="lib/vendor/fastclick.js"></script>
+  <script>
+  	$(document).ready(function(){
+		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+			thing="iframe frameBorder='0'";
+			thing2="iframe";
+		}
+		else{
+			thing=thing2="embed";
+		}
+		
+		
+		$("#game").append("<"+thing+" id='anxietyAppEmbed' src='anxiety/anxietyApp.html' width='100%' height='100%' class='noselect'></"+thing+"> ");
+	});
+  </script>
 </head>
 <body>
   
@@ -22,8 +36,8 @@
 	</div>
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
-			<div class="embed-cont">
-				<embed id="anxietyAppEmbed" src="anxiety/anxietyApp.html" width="100%" height="100%" class="noselect"></embed> 
+			<div id="game" class="embed-cont">
+				
 			</div>
 			<button onclick="location.href='anxiety/anxietyApp.html'">Fullscreen</button>
 		</div>
@@ -42,7 +56,7 @@
 			planets create a dual layered parallax background.
 			<br>
 			<br>
-			In addition, I use a sine wave and scales to generate calm, ambient music.
+			In addition, I use a sine wave and scales to generate calm, ambient music, although this has been disabled on the current version on this page for maximum functionality purposes.
 			<br>
 			<br>
 			This is all created with <a href="http://p5js.org/">p5.js</a>.

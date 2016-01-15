@@ -10,6 +10,20 @@
   <script src="lib/vendor/jquery.js"></script>
   <script src="lib/vendor/modernizr.js"></script>
   <script src="lib/vendor/fastclick.js"></script>
+  <script>
+  $(document).ready(function(){
+		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+			thing="iframe frameBorder='0'";
+			thing2="iframe";
+		}
+		else{
+			thing=thing2="embed";
+		}
+		
+		
+		$("#game").append("<"+thing+" id='mazeEmbed' src='mazeGen.html' width='450' height='450'></"+thing+"> ");
+	});
+  </script>
 </head>
 <body>
   
@@ -23,8 +37,7 @@
 	<div class="block row fullWidth">
 		<div class="columns medium-6 small-12">
 			<h3 class="lob">Click the maze to refresh</h3>
-			<div class="embed-cont">
-				<embed id="mazeEmbed" src="mazeGen.html" width="450" height="450"></embed> 
+			<div id="game" class="embed-cont">
 			</div>
 		</div>
 		<div class="columns medium-6 small-12">

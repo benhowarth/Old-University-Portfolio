@@ -6,7 +6,11 @@ $(function(){
 		title:"Question x",
 		closeText:"X",
 		modal:true,
-		beforeClose:function(event,ui){dungeon.player.questionExit();}
+		closeOnEscape: false,
+		   open: function(event, ui)
+		   {
+			  $(".ui-dialog-titlebar-close").hide();
+		   }
 	});
 	var gDlg=$("#gameOverDialog");
 		gDlg.dialog({
@@ -159,6 +163,7 @@ $(function(){
 					dungeon.player.score+=dungeon.timeLeft;
 					dungeon.timer("stop");
 					console.log("Question correct!");
+					//alert(0);
 					//alert("Question correct!");
 					dungeon.questionsLeft--;
 					questionNo++;
@@ -177,10 +182,6 @@ $(function(){
 					//console.log("Your score is "+dungeon.player.score+"!");
 					$("#score").text("Score: "+dungeon.player.score+"\nLevel: "+dungeon.player.level+"\nQuestions Left: "+dungeon.questionsLeft);
 					dungeon.player.checkFinishLevel();
-				},
-				questionExit:function(){
-					dungeon.player.canMove=true;
-					//console.log("Question exited!");
 				},
 				gameOver:function(){
 					dungeon.player.canMove=false;
@@ -302,6 +303,7 @@ $(function(){
 			},
 			
 			timer:function(whatDo){
+				//console.log(whatDo);
 				if(whatDo=="start"){
 					$("#questionDialogTimer").text("Time left: "+dungeon.timeLeft);
 					timerInterval=window.setInterval(function(){
@@ -314,7 +316,7 @@ $(function(){
 					},1000)
 				}
 				else if(whatDo=="stop"){
-					console.log(1);
+					//console.log(100);
 					window.clearInterval(timerInterval);
 					dungeon.timeLeft=10;
 					$("#questionDialog").dialog("close");

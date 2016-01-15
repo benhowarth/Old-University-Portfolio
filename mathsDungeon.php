@@ -14,12 +14,14 @@
 	$(document).ready(function(){
 		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
 			thing="iframe frameBorder='0'";
+			thing2="iframe";
 		}
 		else{
-			thing="embed";
+			thing=thing2="embed";
 		}
 		
-		$("#game").append("<"+thing+" id='mathsGameEmbed' src='mathsGame/mathsGame2.php' width='100%' height='650'></"+thing+"> ");
+		
+		$("#game").append("<"+thing+" id='mathsGameEmbed' src='mathsGame/mathsGame2.php' width='100%' height='600'></"+thing+"> ");
 	});
   </script>
 </head>

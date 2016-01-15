@@ -148,6 +148,11 @@
 			else{timeSpeed=5000;}
 			loaded();
 		});
+		$("body").on("touchstart",function(){
+			if(timeSpeed==5000){timeSpeed=1;}
+			else{timeSpeed=5000;}
+			loaded();
+		});
 		//set up stars
 		starsDrawn=false;
 		function drawStars()

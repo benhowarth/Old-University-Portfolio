@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="block row fullWidth">
-		<div class="columns medium-6 small-12">
+		<div class="columns medium-12 small-12">
 			<p>
 			For all of my life, I've been interested in creating. I started using computers from very
 			early on (from as early as 2) and the possibilities of them fascinated me, I began to create art and animation
@@ -44,7 +44,7 @@
 			small way, affect humanity and the world for the better.
 			</p>
 		</div>
-		<div class="columns large-4 large-pull-1 medium-3 medium-pull-1 small-12">
+		<!--div class="columns large-4 large-pull-1 medium-3 medium-pull-1 small-12">
 			<img class="fullWidth" src="http://placehold.it/600x600"/>
 			<br>
 			<br>
@@ -55,7 +55,7 @@
 			<br>
 			<br>
 			<img class="fullWidth" src="http://placehold.it/600x600"/>
-		</div>
+		</div-->
 	</div>
   
   <script src="js/vendor/jquery.js"></script>

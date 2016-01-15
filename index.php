@@ -24,9 +24,9 @@
 			<p>
 			Hi, I'm Ben! This website is a little place to showcase some of my coding projects.
 			<br>
-			Have a look through my <a href="caseStudies.php">Case Studies</a>.
-			See my <a href="testimonials.php">testimonials</a>.
-			Or even read <a href="about.php">about me</a>.
+			Have a look through my <a href="caseStudies.php">case studies</a>,
+			see my <a href="testimonials.php">testimonials</a>,
+			or even read <a href="about.php">about me</a>.
 			<br>
 			<br>
 			This website is created using HTML, CSS, Javascript,

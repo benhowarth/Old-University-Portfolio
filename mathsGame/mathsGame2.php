@@ -4,6 +4,7 @@
 	<!--link rel='stylesheet' href='style.css'/-->
 	<link rel='stylesheet' href='jquery-ui.min.css'>
 	<link rel='stylesheet' href='jquery-ui.structure.min.css'>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"> 
 	<style>
 		#dungeonHolder
 		{
@@ -16,7 +17,7 @@
 		#dungeonHolderHolder
 		{
 			width:250px;
-			height:300px;
+			height:250px;
 			overflow:hidden;
 			border-style:double;
 			border-width:3px;
@@ -74,6 +75,11 @@
 	<script src='question_multiplication.js'></script>
 	<script src='question_percentage.js'></script>
 	<script src='main.js'></script>
+	<script>
+	 $('body').on('touchmove', function (e) {
+         if (!$('.scrollable').has($(e.target)).length) e.preventDefault();
+ });
+	</script>
 </head>
 <body class="noselect">
 	

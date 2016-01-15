@@ -10,6 +10,19 @@
   <script src="lib/vendor/jquery.js"></script>
   <script src="lib/vendor/modernizr.js"></script>
   <script src="lib/vendor/fastclick.js"></script>
+  <script>
+  $(document).ready(function(){
+		if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+			thing="iframe frameBorder='0'";
+			thing2="iframe";
+		}
+		else{
+			thing=thing2="embed";
+		}
+		
+		$("#game").append("<"+thing+" id='dayNightEmbed' src='dayNight.html' width='100%' height='50%'></"+thing+"> ");
+	});
+  </script>
 </head>
 <body>
   
@@ -24,8 +37,7 @@
 		<div class="columns medium-6 small-12">
 			<strong>Click to cycle between a quick day/night cycle or a real time cycle which matches your
 			device's current time.</strong>
-			<div class="embed-cont">
-				<embed id="dayNightEmbed" src="dayNight.html" width="100%" height="50%"></embed> 
+			<div id="game" class="embed-cont">
 			</div>
 		</div>
 		<div class="columns medium-6 small-12">
